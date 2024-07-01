@@ -1,11 +1,18 @@
 package mini_projects.factorial;
-/**
- * Program: factorial.java
- * Desc: factorial - calculates the fatorial of agiven number
- */
 
 import java.util.Scanner;
-
+/**
+ * Class: Factorial
+ * 
+ * Description: This class calculates the factorial of a given number input by the user.
+ *              It takes an integer input from the user, checks if it's negative, zero, or one,
+ *              and then calculates the factorial using a loop for numbers greater than one.
+ *              The result is then printed to the console.
+ * 
+ * Methods:
+ *  - main(String[] args): The main method of the class that takes user input, calculates the factorial,
+ *                        and prints the result to the console.
+ */
 public class Factorial {
     public static void main(String[] args) {
         int fact = 1;

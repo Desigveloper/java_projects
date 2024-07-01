@@ -7,6 +7,11 @@ public class Boat {
         this.length = len;
     }
 
+    /**
+     * Retrieves the length of the boat.
+     *
+     * @return         the length of the boat
+     */
     public int getLength() {
         return this.length;
     }

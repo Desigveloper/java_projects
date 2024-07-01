@@ -10,6 +10,12 @@ public class PatternTestDrive {
         drawPattern(strChar, rows);
     }
 
+    /**
+     * Draws a pattern using the specified character and number of rows.
+     *
+     * @param  strChar  the character to be used for drawing the pattern
+     * @param  rows     the number of rows in the pattern
+     */
     static void drawPattern(String strChar, int rows) {
         for (int i = 1; i <= rows; i++) {
             for (int j = 1; j <= i; j++) {
