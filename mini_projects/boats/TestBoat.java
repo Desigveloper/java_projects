@@ -1,4 +1,4 @@
-package mini_projects.boats;
+package boats;
 
 /**
  * TestBoat

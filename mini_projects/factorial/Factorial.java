@@ -1,4 +1,4 @@
-package mini_projects.factorial;
+package factorial;
 
 import java.util.Scanner;
 /**

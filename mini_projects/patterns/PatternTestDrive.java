@@ -1,4 +1,4 @@
-package mini_projects.patterns;
+package patterns;
 import javax.swing.JOptionPane;
 
 public class PatternTestDrive {
