@@ -46,6 +46,7 @@ public class Calculator {
         System.out.println("Enter the second number:");
         setSecondNum(sc.nextDouble());
 
+
         sc.close();
 
     }
