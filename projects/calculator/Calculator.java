@@ -90,6 +90,7 @@ public class Calculator {
         double num2 = getSecondNum();
         long intNum1 = Math.round(num1);
         long intNum2 = Math.round(num2);
+
         
         if (intNum1 == num1 && intNum2 == num2)
             return 0;
@@ -97,7 +98,8 @@ public class Calculator {
             return 1;
         else if (intNum1 != num1 && intNum2 == num2)
             return 2;
-        return 3;
+        else
+            return 100;
     }
 
     public void printResult() {
@@ -111,14 +113,20 @@ public class Calculator {
         boolean checkResult = checkDecimal(doubleValue);
         
         if (checkResult) {
-            if (checkNumbers() == 0)
-                System.out.println(Math.round(num1) + " " + operator + " " + Math.round(num2) + " = " + doubleValue);
-            else if (checkNumbers() == 1)
-                System.out.println(Math.round(num1) + " " + operator + " " + num2 + " = " + doubleValue);
-            else if (checkNumbers() == 2)
-                System.out.println(num1 + " " + operator + " " + Math.round(num2) + " = " + doubleValue);
-            else
-                System.out.println(num1 + " " + operator + " " + num2 + " = " + doubleValue);
+            switch (checkNumbers()) {
+                case 0:
+                    System.out.println(Math.round(num1) + " " + operator + " " + Math.round(num2) + " = " + doubleValue);
+                    break;
+                case 1:
+                    System.out.println(Math.round(num1) + " " + operator + " " + num2 + " = " + doubleValue);
+                    break;
+                case 2:
+                    System.out.println(num1 + " " + operator + " " + Math.round(num2) + " = " + doubleValue);
+                    break;
+                default:
+                    System.out.println(num1 + " " + operator + " " + num2 + " = " + doubleValue);
+                    break;
+            }
         }
         else {
             long intResult = Math.round(doubleValue);
