@@ -14,13 +14,29 @@ public class Passport extends PassportInfo {
          return LocalDate.now().toString();
     }
 
+    /**
+     * Retrieves the expiry date of the passport by adding 10 years to the start date.
+     *
+     * @return The expiry date of the passport as a string.
+     */
     public static String getExpiryDate() {
+        // Get the start date as a LocalDate object
         LocalDate strtDate = LocalDate.parse(getStartDate());
+        
+        // Calculate the expiry date by adding 10 years to the start date
         LocalDate expDate = strtDate.plusYears(10);
+        
+        // Return the expiry date as a string
         return  expDate.toString();
     }
 
 
+    /**
+     * Generates a unique passport ID by combining a given country code with a random 9-digit number.
+     *
+     * @param countryCode The country code to be prefixed to the passport ID.
+     * @return A string representing the unique passport ID.
+     */
     private static String createPassportID(String countryCode) {
         var digits = rand.nextLong(99999999, 1000000000);
         return countryCode + digits;
@@ -74,6 +90,11 @@ public class Passport extends PassportInfo {
    
     
 
+    /**
+     * Prints the passport details to the console.
+     * The passport details include the full name, date of birth, country,
+     * passport ID, start date, expiry date, and status.
+     */
     public void printPassport() {
         String name = getFullName();
         String dOBirth = getDateOfBirth();
@@ -83,6 +104,7 @@ public class Passport extends PassportInfo {
         String expiryDate = getExpiryDate();
         String status = getStatus();
 
+        // Print the passport details
         System.out.println("Fullname: " + name);
         System.out.println("D.O.B: " + dOBirth);
         System.out.println("Country: " + country.toUpperCase());
@@ -90,14 +112,17 @@ public class Passport extends PassportInfo {
         System.out.println("Start date: " + startDate);
         System.out.println("Expiry date: " + expiryDate);
         System.out.println("Status: " + status.toUpperCase());
-
     }
 
-    void intro() {
+    /**
+    * Prints a formatted introduction for passport information summary.
+    * The introduction includes a header, the current date, and time.
+    */
+    public void intro() {
         System.out.println("------------------------------------------------------------------");
         System.out.println("\t\tPASSPORT INFORMATION SUMMERY");
         System.out.println("\tPassport created: " + LocalDate.now() + " @ " + LocalTime.now());
         System.out.println("------------------------------------------------------------------\n");
-    }
+    }   
 
 }
