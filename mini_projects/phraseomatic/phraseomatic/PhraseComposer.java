@@ -4,7 +4,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 
-public class PhraseoComposer {
+public class PhraseComposer {
     public static void main(String[] args) {
         WordsBox wordsBox = new WordsBox();        
 
@@ -17,19 +17,19 @@ public class PhraseoComposer {
 }
 
 class WordsBox {
-        private static Random rand = new Random();
+        private static final Random rand = new Random();
 
         // Make three sets of words to choose from. Add your own!
-        private String[] wordListOne = {"24/7", "multi Tiar", "30,OOO foot", "B-to-B",
+        private final String[] wordListOne = {"24/7", "multi Tiar", "30,OOO foot", "B-to-B",
         "win-win", "front-end", "web-based", "pervasive", "smart",
         "six-sigma", "critical-path" , "dynamic" };
 
-       private String[] wordListTwo = { "empowered", "sticky", "value-added.", "oriented",
+       private final String[] wordListTwo = { "empowered", "sticky", "value-added.", "oriented",
         "centric", "distributed", "clustered", "branded", "outside-the-box",
         "positioned", "networked", " focused", "leveraged", "aligned",
         "targeted", "shared", "cooperative", "accelerated" };
 
-       private String[] wordListThree = {"process", "tipping-point", "solution",
+       private final String[] wordListThree = {"process", "tipping-point", "solution",
         "architecture", "core competency", "strategy", "mindshare",
         "portal" , "space", "vision", "paradigm", "mission" };
         
@@ -40,14 +40,14 @@ class WordsBox {
         }
 
         // Find how many words are each list
-        private int len1 = wordListOne.length;
-        private int len2 = wordListTwo.length;
-        private int len3 = wordListThree.length;
+        private final int len1 = wordListOne.length;
+        private final int len2 = wordListTwo.length;
+        private final int len3 = wordListThree.length;
 
         // Generate three random numbers
-        private int rand1 = rand.nextInt(len1);
-        private int rand2 = rand.nextInt(len2);
-        private int rand3 = rand.nextInt(len3);
+        private final int rand1 = rand.nextInt(len1);
+        private final int rand2 = rand.nextInt(len2);
+        private final int rand3 = rand.nextInt(len3);
 
         String composePhrase() {
                 return (wordListOne[rand1] + " " + wordListTwo[rand2] + " " + wordListThree[rand3] + ".");
