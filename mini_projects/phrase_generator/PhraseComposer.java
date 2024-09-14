@@ -20,7 +20,7 @@ class WordsBox {
         private static final Random rand = new Random();
 
         // Make three sets of words to choose from. Add your own!
-        private final String[] wordListOne = {"24/7", "multi Tiar", "30,OOO foot", "B-to-B",
+        private final String[] wordListOne = {"24/7", "multi tier", "30,OOO foot", "B-to-B",
         "win-win", "front-end", "web-based", "pervasive", "smart",
         "six-sigma", "critical-path" , "dynamic" };
 
@@ -30,7 +30,7 @@ class WordsBox {
         "targeted", "shared", "cooperative", "accelerated" };
 
        private final String[] wordListThree = {"process", "tipping-point", "solution",
-        "architecture", "core competency", "strategy", "mindshare",
+        "architecture", "core competency", "strategy", "mind-share",
         "portal" , "space", "vision", "paradigm", "mission" };
         
         WordsBox() {

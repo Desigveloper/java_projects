@@ -21,13 +21,13 @@ public class Passport extends PassportInfo {
      */
     public static String getExpiryDate() {
         // Get the start date as a LocalDate object
-        LocalDate strtDate = LocalDate.parse(getStartDate());
+        LocalDate passportStartDate = LocalDate.parse(getStartDate());
         
         // Calculate the expiry date by adding 10 years to the start date
-        LocalDate expDate = strtDate.plusYears(10);
+        LocalDate passportExpiryDate = passportStartDate.plusYears(10);
         
         // Return the expiry date as a string
-        return  expDate.toString();
+        return  passportExpiryDate.toString();
     }
 
 
@@ -68,6 +68,7 @@ public class Passport extends PassportInfo {
     }
    
 
+    @Override
     public void getInput() {
         System.out.println("Enter fullname:");
         setFullName(sc.nextLine());
@@ -96,22 +97,22 @@ public class Passport extends PassportInfo {
      * passport ID, start date, expiry date, and status.
      */
     public void printPassport() {
-        String name = getFullName();
-        String dOBirth = getDateOfBirth();
-        String country = getCountry();
-        String passportID = getPassportID();
+        String personFullName = getFullName();
+        String pDateOfBirth = getDateOfBirth();
+        String countryName = getCountry();
+        String passportId = getPassportID();
         String startDate = getStartDate();
         String expiryDate = getExpiryDate();
-        String status = getStatus();
+        String passportStatus = getStatus();
 
         // Print the passport details
-        System.out.println("Fullname: " + name);
-        System.out.println("D.O.B: " + dOBirth);
-        System.out.println("Country: " + country.toUpperCase());
-        System.out.println("PassportID: " + passportID.toUpperCase());
+        System.out.println("Fullname: " + personFullName);
+        System.out.println("D.O.B: " + pDateOfBirth);
+        System.out.println("Country: " + countryName.toUpperCase());
+        System.out.println("PassportID: " + passportId.toUpperCase());
         System.out.println("Start date: " + startDate);
         System.out.println("Expiry date: " + expiryDate);
-        System.out.println("Status: " + status.toUpperCase());
+        System.out.println("Status: " + passportStatus.toUpperCase());
     }
 
     /**
