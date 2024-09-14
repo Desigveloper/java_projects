@@ -1,4 +1,4 @@
-package phraseomatic;
+package phrase_generator;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
