@@ -19,7 +19,7 @@ public class Leaderboard {
         return new ArrayList<>(scores.subList(0, Math.min(n, scores.size())));
     }
 
-    class Score implements Comparable<Score> {
+    public class Score implements Comparable<Score> {
         String playerName;
         int score;
 
