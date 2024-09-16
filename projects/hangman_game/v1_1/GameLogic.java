@@ -9,6 +9,7 @@ public class GameLogic {
     private char[] currentGuess;
     private HashSet<Character> guessesLetters;
     private int remainingGuesses;
+    private String currentCategory;
     
     public GameLogic(WordBank wordBank, UserInterface ui) {
         this.wordBank = wordBank;
@@ -38,6 +39,7 @@ public class GameLogic {
     }
 
     public void play() {
+        currentCategory = ui.selectCategory(wordBank.getCategories());
         initializeGame();
 
         while (remainingGuesses > 0 && !isWordGuessed()) {
@@ -52,10 +54,8 @@ public class GameLogic {
         showDifficultyMenu();
         setDifficulty(ui.selectDifficulty());
 
-
-
         do {
-            wordToGuess = wordBank.getRandomWord();
+            wordToGuess = wordBank.getRandomWord(currentCategory);
         } while (wordToGuess.length() < difficulty.minWordLength);
 
         currentGuess = new char[wordToGuess.length()];

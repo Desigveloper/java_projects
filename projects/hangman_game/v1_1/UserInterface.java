@@ -1,6 +1,7 @@
 package projects.hangman_game.v1_1;
 
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 import projects.hangman_game.v1_1.GameLogic.Difficulty;
@@ -10,6 +11,15 @@ public class UserInterface {
 
     public UserInterface() {
         sc =  new Scanner(System.in);
+    }
+
+    public String selectCategory(ArrayList<String> categories) {
+        System.out.println("Select a category:");
+        for (int i = 0; i < categories.size(); i++) {
+            System.out.println((i + 1) + ". " + categories.get(i));
+        }
+        int choice = Integer.parseInt(sc.nextLine()) - 1;
+        return categories.get(choice);
     }
 
     public void displayGameState(char[] currentGuess, int remainingGuesses,
@@ -46,8 +56,7 @@ public class UserInterface {
         }
 
         public Difficulty selectDifficulty() {
-            int choice = sc.nextInt();
-            sc.nextLine();
+            int choice = Integer.parseInt(sc.nextLine());
 
             return switch (choice) {
                 case 1 -> Difficulty.EASY;

@@ -1,26 +1,30 @@
 package projects.hangman_game.v1_1;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 public class WordBank {
-    private final ArrayList<String> words;
+    private final HashMap<String, ArrayList<String>> categories;
     private final Random random;
  
     public WordBank() {
-        words = new ArrayList<>();
-        //Add words to the list
-        words.add("JAVA");
-        words.add("PROGRAMMING");
-        words.add("HANGMAN");
-        words.add("BACKEND");
-        // Add more words
-
+        categories = new HashMap<>();
         random = new Random();
+
+        // initialize categories
+        categories.put("Animals", new ArrayList<>(List.of("ELEPHANT", "GIRAFFE", "PENGUIN", "CAMEL", "SHEEP", "BUTTERFLY", "CROCODILE", "LION", "BUFFALO", "DOLPHIN")));
+        categories.put("Countries", new ArrayList<>(List.of("BRAZIL", "FRANCE", "JAPAN", "AUSTRALIA", "CAMEROON", "SOUTH AFRICA", "BURKINA FASO", "CROATIA", "LIBERIA", "GHANA")));
+        categories.put("Programming", new ArrayList<>(List.of("VARIABLE", "OBJECTS", "ARRAY", "PHP", "LINKEDLIST", "JAVASCRIPT", "COLLECTION", "JAVA", "PYTHON", "ALGORITHM")));
     }
 
-    public String getRandomWord() {
-        int index = random.nextInt(words.size());
-        return words.get(index);
+    public ArrayList<String> getCategories() {
+        return new ArrayList<>(categories.keySet());
+    }
+
+    public String getRandomWord(String category) {
+        ArrayList<String> words = categories.get(category);
+        return words.get(random.nextInt(words.size()));
     }
 }
