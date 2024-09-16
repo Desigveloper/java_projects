@@ -23,10 +23,17 @@ public class UserInterface {
     }
 
     public void displayGameState(char[] currentGuess, int remainingGuesses,
-        HashSet<Character> guessesLetters) {
+        HashSet<Character> guessesLetters, int hintsRemaining) {
             System.out.println("\nWord: " + new String(currentGuess));
             System.out.println("Guesses left: " + remainingGuesses);
             System.out.println("Guessed letters: " + guessesLetters);
+            System.out.println("Hints remaining: " + hintsRemaining);
+        }
+
+        public boolean askForHint() {
+
+            System.out.print("Do you want to use a hint? (y/n): ");
+            return sc.nextLine().equalsIgnoreCase("y");
         }
 
         public char getGuess() {

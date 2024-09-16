@@ -10,6 +10,7 @@ public class GameLogic {
     private HashSet<Character> guessesLetters;
     private int remainingGuesses;
     private String currentCategory;
+    private int hintsRemaining;
     
     public GameLogic(WordBank wordBank, UserInterface ui) {
         this.wordBank = wordBank;
@@ -43,11 +44,26 @@ public class GameLogic {
         initializeGame();
 
         while (remainingGuesses > 0 && !isWordGuessed()) {
-            ui.displayGameState(currentGuess, remainingGuesses, guessesLetters);
-            char guess = ui.getGuess();
-            processGuess(guess);
+            ui.displayGameState(currentGuess, remainingGuesses, guessesLetters, hintsRemaining);
+            
+            if (hintsRemaining > 0 && ui.askForHint()) {
+                giveHint();
+            } else {
+                char guess = ui.getGuess();
+                processGuess(guess);
+            }
         }
         endGame();
+    }
+
+    private void giveHint() {
+        for (int i = 0; i < wordToGuess.length(); i++) {
+            if (currentGuess[i] == '_') {
+                currentGuess[i] = wordToGuess.charAt(i);
+                hintsRemaining--;
+                break;
+            }
+        }
     }
 
     private void initializeGame() {
@@ -66,6 +82,7 @@ public class GameLogic {
 
         guessesLetters = new HashSet<>();
         remainingGuesses = difficulty.guesses;
+        hintsRemaining = 2; //Starting with 2 hints
     }
 
     private void processGuess(char guess) {
