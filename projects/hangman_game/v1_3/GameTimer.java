@@ -42,4 +42,9 @@ public class GameTimer {
     public int getSecondsLeft() {
         return secondsLeft;
     }
+
+    public void addTime(int extraTime) {
+        secondsLeft += extraTime;
+       // throw new UnsupportedOperationException("Unimplemented method 'addTime'");
+    }
 }

@@ -18,8 +18,18 @@ public class UserInterface {
         for (int i = 0; i < categories.size(); i++) {
             System.out.println((i + 1) + ". " + categories.get(i));
         }
-        int choice = Integer.parseInt(sc.nextLine()) - 1;
-        return categories.get(choice);
+        while (true) {
+            try {
+                int choice = Integer.parseInt(sc.nextLine()) - 1;
+                if (choice >= 0 && choice < categories.size()) {
+                    return categories.get(choice);
+                } else {
+                    System.out.println("Invalid choice. Please try again");
+                }
+            } catch (NumberFormatException e) {
+               System.out.println("Please enter a valid number.");
+            }
+        }
     }
 
     public void displayGameState(char[] currentGuess, int remainingGuesses,
@@ -32,6 +42,7 @@ public class UserInterface {
             if (secondsLeft >= 0 ) {
                 System.out.println("Time left: " + secondsLeft + " seconds");
             }
+            System.out.println("=".repeat(40));
         }
 
         public void updateTimerDisplay(int secondsLeft) {
@@ -39,14 +50,25 @@ public class UserInterface {
         }
 
         public boolean askForHint() {
-
-            System.out.print("Do you want to use a hint? (y/n): ");
-            return sc.nextLine().equalsIgnoreCase("y");
+            while (true) {
+                System.out.print("Do you want to use a hint? (y/n): ");
+                String input = sc.nextLine().trim().toLowerCase();
+                if (input.equals("y") || input.equals("n")) {
+                    return input.equals("y");
+                }
+                System.out.println("Invalid input. Please enter 'y' or 'n'");
+            }
         }
 
         public char getGuess() {
-            System.out.print("Enter your guess: ");
-            return sc.nextLine().toUpperCase().charAt(0);
+            while (true) {
+                System.out.print("Enter your guess: ");
+                String input = sc.nextLine().trim().toUpperCase();
+                if (input.length() == 1 && Character.isLetter(input.charAt(0))) {
+                    return input.charAt(0);
+                }
+                System.out.println("Invalid input. Please enter a single letter.");
+            }
         }
 
         public void displayAlreadyGuessed() {
@@ -54,16 +76,22 @@ public class UserInterface {
         }
 
         public void displayWin(String word) {
-            System.out.println("Congratulations! You guessed the word: " + word);
+            System.out.println("\n🎉 Congratulations! You guessed the word: " + word);
         }
 
         public void displayLoss(String word) {
-            System.out.println("Game over! The word was: " + word);
+            System.out.println("\n😢 Game over! The word was: " + word);
         }
 
         public boolean askPlayAgain() {
-            System.out.println("Do you want to play again? (y/n)");
-            return sc.nextLine().equalsIgnoreCase("y");
+            while (true) {
+                System.out.println("Do you want to play again? (y/n)");
+                String input = sc.nextLine().trim().toLowerCase();
+                if (input.equals("y") || input.equals("n")) {
+                    return input.equals("y");
+                }
+                System.out.println("Invalid input. Please enter 'y' or 'n'");
+            }
         }
 
         public void displayGoodbye() {
@@ -71,31 +99,75 @@ public class UserInterface {
         }
 
         public Difficulty selectDifficulty() {
-            int choice = Integer.parseInt(sc.nextLine());
-
-            return switch (choice) {
-                case 1 -> Difficulty.EASY;
-                case 2 -> Difficulty.MEDIUM;
-                case 3 -> Difficulty.HARD;
-                default -> null;
-            };
+            while (true) {    
+                try {
+                    int choice = Integer.parseInt(sc.nextLine());
+                    return switch (choice) {
+                        case 1 -> Difficulty.EASY;
+                        case 2 -> Difficulty.MEDIUM;
+                        case 3 -> Difficulty.HARD;
+                        default -> {
+                            System.out.println("Invalid choice. Please try again.");
+                            yield null;
+                        }
+                    };
+                } catch (NumberFormatException e) {
+                    System.out.println("Please enter a valid number.");
+                }
+            }
         }
 
         public String getPlayerName() {
             System.out.print("Enter your name: ");
-            return sc.nextLine();
+            return sc.nextLine().trim();
         }
 
         public void displayLeaderboard(ArrayList<Leaderboard.Score> topScores) {
             System.out.println("\nTop Scores:");
+            System.out.println("=".repeat(30));
             for (int i = 0; i < topScores.size(); i++) {
                 Leaderboard.Score score = topScores.get(i);
-                System.out.println((i + 1) + ". " + score.playerName + ": " + score.score);
-            }       
+                System.out.printf("%d. %-15s %d pts%n", (i + 1), score.playerName, score.score);
+            }
+            System.out.println("=".repeat(30));     
         }
         
         public boolean  askTimeMode() {
-            System.out.print("Do you want to play in timed mode? (y/n)");
-            return sc.nextLine().equalsIgnoreCase("y");
+            while (true) {
+                System.out.print("Do you want to play in timed mode? (y/n)");
+                String input = sc.nextLine().trim().toLowerCase();
+                if (input.equals("y") || input.equals("n")) {
+                    return input.equals("y");
+                }
+                System.out.println("Invalid input. Please enter 'y' or 'n'");
+            }
         }
+
+        public void displayWordDefinition(String word, String definition) {
+            System.out.println("\nWord: " + word);
+            System.out.println("Definition: " + definition);
+        }
+
+        public void displayAchievement(String achievement) {
+            System.out.println("\n🏅 Achievement Unlocked: " + achievement + " 🏅");
+        }
+
+        public int selectPowerUp(ArrayList<String> powerUps) {
+            System.out.println("Select a power-up:");
+            for (int i = 0; i < powerUps.size(); i++) { 
+                System.out.println((i + 1) + ". " + powerUps.get(i));
+            }
+            while (true) { 
+                try {
+                    int choice = Integer.parseInt(sc.nextLine()) - 1;
+                    if (choice >= 0 && choice < powerUps.size()) {
+                        return choice;
+                    } else {
+                        System.out.println("Invalid choice. Please try again.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Please enter a valid number.");
+            }
+        }
+    }
 } 
