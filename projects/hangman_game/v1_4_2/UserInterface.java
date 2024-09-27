@@ -1,12 +1,14 @@
-package projects.hangman_game.v1_4_1;
+package projects.hangman_game.v1_4_2;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
-import projects.hangman_game.v1_4_1.GameLogic.Difficulty;
-import projects.hangman_game.v1_4_1.MultiplayerGame.Player;
+import projects.hangman_game.v1_4_2.GameLogic.Difficulty;
+import projects.hangman_game.v1_4_2.MultiplayerGame.Player;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 
 public class UserInterface {
@@ -14,6 +16,73 @@ public class UserInterface {
 
     public UserInterface() {
         sc =  new Scanner(System.in);
+    }
+
+    public String selectSabotageAction(int availablePoints) {
+        System.out.println("Selet a sabotage action (you have " + availablePoints + " points):");
+        System.out.println("0. No sabotage");
+        System.out.println("1. Shuffle the word (1 point)");
+        System.out.println("2. Reduce time (1 point, Time mode only)");
+        System.out.println("3. Add fake letters (1 point)");
+        System.out.println("4. Double or Nothing (2 points)");
+
+        while (true) {
+            try {
+                int choice = Integer.parseInt(sc.nextLine());
+                switch (choice) {
+                    case 0: return "NONE";
+                    case 1: return availablePoints >= 1 ? "SHUFFLE" : "NONE";
+                    case 2: return availablePoints >= 1 ? "REDUCE_TIME" : "NONE";
+                    case 3: return availablePoints >= 1 ? "ADD_FAKE_LETTERS" : "NONE";
+                    case 4: return availablePoints >= 2 ? "DOUBLE_OR_NOTHING" : "NONE";
+                    case 5: return availablePoints >= 3 ? "LETTER_LOCK" : "NONE";
+                    default:
+                        System.out.println("Invalid choice. Please try again");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid number.");
+            }
+        }
+    }
+
+    public boolean askUseCounterSabotage(String playerame) {
+        System.out.print(playerame + ", do you want to Counter-Sabotage? (costs 2 points) (y/n): ");
+        return sc.nextLine().trim().toLowerCase().equals("y");
+    }
+
+    public void displayCounterSabotageUsed(String playerName) {
+        System.out.println(playerName + " used Counter-Sabotage! The sabotage was blocked.");
+    }
+
+    public void displaySabotagePointsEarned(String playerName, int points) {
+        System.out.println(playerName + " earned " + points + " sabotage points!");
+    }
+    public void displayDoubleOrNothing() {
+        System.out.println("=== DOUBLE OR NOTHING MODE ACTIVATED ===");
+        System.out.println("Your score will be doubled if you win, but you'll lose all points if you fail!");
+    }
+
+    public void displayLockedLetter(char letter) {
+        System.out.println("=== LOCKED LETTER ===");
+        System.out.println("The letter '" + letter + "' has been revealed and locked in place.");
+    }
+
+
+    public void displayScoreboard(List<Player> players, Map<Player, Integer> sabotagePoints) {
+        System.out.println("\nCurrent Scores and Sabotage Points: ");
+        for (Player player : players) {
+            System.out.println(player.getName() + ": Score = " + player.getScore() + 
+                        ", Sabotage Points = " + sabotagePoints.get(player));
+        }
+    }
+
+    public String selectSpecialEvent() {
+        String[] events = {"BONUS_POINTS", "RESET_COOLDOWNS", "WILD_SABOTAGE"};
+        return events[new Random().nextInt(events.length)];
+    }
+
+    public void displaySpecialEvent(String message) {
+        System.out.println("\n🌟 Special Event: " + message + " 🌟");
     }
 
     public void displaySabotageActivated(String playerName) {
@@ -39,27 +108,6 @@ public class UserInterface {
         }
     }
 
-    public String selectSabotageAction() {
-        System.out.println("Select a sabotage action: ");
-        System.out.println("1: Shuffle the word");
-        System.out.println("2. Reduce time (Timed mode only)");
-        System.out.println("3. Add fake letters");
-
-        while (true) {
-            try {
-                int choice = Integer.parseInt(sc.nextLine());
-                switch (choice) {
-                    case 1: return "SHUFFLE";
-                    case 2: return "REDUCE_TIME";
-                    case 3: return "ADD_FAKE_LETTERS";
-                    default:
-                        System.out.println("Invalid choice. Please try again.");
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Please enter a valid number.");
-            }
-        }
-    }
 
     public void displaySabotageApplied(String saboteurName, String targetName, String action) {
         System.out.println(saboteurName + " applied " + action + " sabotage to " + targetName + "!");
@@ -273,7 +321,7 @@ public class UserInterface {
 
     public boolean askMultiplayerMode() {
         while (true) {
-            System.out.println("Do you want to play in multiple player mode (y/n): ");
+            System.out.print("Do you want to play in multiple player mode (y/n): ");
             String input = sc.nextLine().trim().toLowerCase();
 
             if (input.equals("y") || input.equals("n")) {
