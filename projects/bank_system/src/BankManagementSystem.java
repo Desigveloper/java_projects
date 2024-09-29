@@ -1,4 +1,3 @@
-package projects.bank_management_system;
 
 public interface BankManagementSystem {
 public void start();
