@@ -1,4 +1,4 @@
-package projects.dotcomgame;
+package projects.dotcomgame.src;
 
 import java.util.List;
 

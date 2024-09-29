@@ -1,4 +1,4 @@
-package projects.dotcomgame;
+package projects.dotcomgame.src;
 
 import java.io.*;
 import java.util.ArrayList;
