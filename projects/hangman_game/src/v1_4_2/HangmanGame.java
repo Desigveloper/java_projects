@@ -1,5 +1,6 @@
 package projects.hangman_game.src.v1_4_2;
 
+
 public class HangmanGame {
     public static void main(String[] args) {
         WordBank wordBank = new WordBank();

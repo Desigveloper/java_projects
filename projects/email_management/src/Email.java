@@ -1,4 +1,3 @@
-package projects.email_management_app;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;

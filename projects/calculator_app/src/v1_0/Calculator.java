@@ -1,4 +1,4 @@
-package projects.calculator.v1_0;
+package v1_0;
 import java.util.Scanner;
 
 public class Calculator {

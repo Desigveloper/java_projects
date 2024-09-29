@@ -1,4 +1,4 @@
-package projects.calculator.v1_1;
+package v1_1;
 
 public abstract class Calculator implements CalculatorInterface{
     @Override
