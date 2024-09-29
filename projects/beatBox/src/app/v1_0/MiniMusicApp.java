@@ -1,4 +1,4 @@
-package projects.BeatBoxApp.v1_0;
+package projects.beatBox.src.app.v1_0;
 
 import javax.sound.midi.*;
 
