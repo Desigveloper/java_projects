@@ -1,5 +1,3 @@
-
-
 public class ServiceManagement extends BankSystem {
     /**
     * Creates a new account.
