@@ -1,4 +1,4 @@
-package v1_0;
+package com.desigvelopercreations.v1_0;
 import java.util.Scanner;
 
 public class Calculator {

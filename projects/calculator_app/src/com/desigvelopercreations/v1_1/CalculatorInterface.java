@@ -1,4 +1,4 @@
-package v1_1;
+package com.desigvelopercreations.v1_1;
 
 public interface CalculatorInterface {
     abstract double add(double num1, double num2);
